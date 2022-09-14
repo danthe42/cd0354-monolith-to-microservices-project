@@ -12,12 +12,12 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     return res.status(401).send({message: 'No authorization headers.'});
   }
 
-  const tokenBearer = req.headers.authorization.split(' ');
+  const tokenBearer: string[] = req.headers.authorization.split(' ');
   if (tokenBearer.length != 2) {
     return res.status(401).send({message: 'Malformed token.'});
   }
 
-  const token = tokenBearer[1];
+  const token: string = tokenBearer[1];
   return jwt.verify(token, c.config.jwt.secret, (err, decoded) => {
     if (err) {
       return res.status(500).send({auth: false, message: 'Failed to authenticate.'});
@@ -40,7 +40,7 @@ router.get('/', async (req: Request, res: Response) => {
 // Get a feed resource
 router.get('/:id',
     async (req: Request, res: Response) => {
-      const {id} = req.params;
+      const { id } = req.params;
       const item = await FeedItem.findByPk(id);
       res.send(item);
     });
@@ -49,9 +49,9 @@ router.get('/:id',
 router.get('/signed-url/:fileName',
     requireAuth,
     async (req: Request, res: Response) => {
-      console.debug("GetSignedUrl request:" + req.toString());
-      const {fileName} = req.params;
-      const url = AWS.getPutSignedUrl(fileName);
+//      console.debug("GetSignedUrl request:" + req.toString());
+      const { fileName } = req.params;
+      const url: string = AWS.getPutSignedUrl(fileName);
       res.status(201).send({url: url});
     });
 
@@ -59,8 +59,8 @@ router.get('/signed-url/:fileName',
 router.post('/',
     requireAuth,
     async (req: Request, res: Response) => {
-      const caption = req.body.caption;
-      const fileName = req.body.url; // same as S3 key name
+      const caption: string = req.body.caption;
+      const fileName: string = req.body.url; // same as S3 key name
 
       if (!caption) {
         return res.status(400).send({message: 'Caption is required or malformed.'});
