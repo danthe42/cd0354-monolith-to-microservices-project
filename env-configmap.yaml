@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_BUCKET: udagramkesmarki
+  AWS_PROFILE: default
+  AWS_REGION: eu-west-2
+  JWT_SECRET: hellodani
+  POSTGRES_DB: udagramkesmarki
+  POSTGRES_HOST: udagramkesmarki.cicwhctm4j9w.eu-west-2.rds.amazonaws.com
+  URL: http://localhost:8100
+metadata:
+  name: env-config
+  
