@@ -19,7 +19,7 @@ export function getGetSignedUrl( key: string ): string {
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
-//  console.debug("getGetSignedUrl() Bucket: " + config.aws_media_bucket + " Key: " + key + " Retval: " + url2ret);
+  console.debug("getGetSignedUrl() Bucket: " + config.aws_media_bucket + " Key: " + key + " Retval: " + url2ret);
   return url2ret;
 }
 
@@ -32,6 +32,6 @@ export function getPutSignedUrl( key: string ): string {
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
-//  console.debug("getPutSignedUrl() Profile: " + config.aws_profile + " Region: " + config.aws_region + " Bucket: " + config.aws_media_bucket + " Key: " + key + " Retval: " + url2ret);
+  console.debug("getPutSignedUrl() Profile: " + config.aws_profile + " Region: " + config.aws_region + " Bucket: " + config.aws_media_bucket + " Key: " + key + " Retval: " + url2ret);
   return url2ret;
 }
